@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   const fetchEntries = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/diary", {
+      const res = await axios.get("${import.meta.env.VITE_BACKEND_URL}/api/diary", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setEntries(res.data);
@@ -39,11 +39,11 @@ const Dashboard = () => {
     e.preventDefault();
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/api/diary/${editId}`, form, {
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/diary/${editId}`, form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       } else {
-        await axios.post("http://localhost:5000/api/diary", form, {
+        await axios.post("${import.meta.env.VITE_BACKEND_URL}/api/diary", form, {
           headers: { Authorization: `Bearer ${token}` },
         });
       }
@@ -62,7 +62,7 @@ const Dashboard = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/diary/${id}`, {
+      await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/diary/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchEntries();

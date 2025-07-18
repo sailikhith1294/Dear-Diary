@@ -16,7 +16,7 @@ const Register = () => {
   const sendVerificationCode = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/send-code", {
+      await axios.post("${import.meta.env.VITE_BACKEND_URL}/api/auth/send-code", {
         email: form.email,
       });
       setMsg("✅ Verification code sent to your email.");
@@ -29,7 +29,7 @@ const Register = () => {
   const verifyCodeAndRegister = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", {
+      const res = await axios.post("${import.meta.env.VITE_BACKEND_URL}/api/auth/register", {
         ...form,
         code,
       });
